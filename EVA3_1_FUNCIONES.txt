@@ -1,0 +1,108 @@
+MySQL Shell 8.0.43
+
+Copyright (c) 2016, 2025, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \connect --mn root@localhost
+\connect --mn root@localhost: unknown option --mn
+\connect [--mx|--mysqlx|--mc|--mysql] [--ssh <sshuri>] <URI>
+ MySQL  SQL > \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 46
+Server version: 8.0.43 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > create database tbd3;
+Query OK, 1 row affected (0.0544 sec)
+ MySQL  localhost:3306 ssl  SQL > show tables;
+ERROR: 1046 (3D000): No database selected
+ MySQL  localhost:3306 ssl  SQL > use tbd3;
+Default schema set to `tbd3`.
+Fetching global names, object names from `tbd3` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  tbd3  SQL > select mansaje();
++-------------+
+| mansaje()   |
++-------------+
+| Hola mundo! |
++-------------+
+1 row in set (0.0437 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select mostrarMensaje("Mich");
++------------------------+
+| mostrarMensaje("Mich") |
++------------------------+
+| hola Mich              |
++------------------------+
+1 row in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select sumar (5,3);
++-------------+
+| sumar (5,3) |
++-------------+
+|           8 |
++-------------+
+1 row in set (0.0402 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > create table datos(
+                                     -> valor1 inr,
+                                     -> valor2 ;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'inr,
+valor2' at line 2
+ MySQL  localhost:3306 ssl  tbd3  SQL > create table datos( valor1 int, valor2 int) ;
+Query OK, 0 rows affected (0.0841 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > insert into datos
+                                     -> values(5,3),(8,4),(-5,-3);
+Query OK, 3 rows affected (0.0495 sec)
+
+Records: 3  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  tbd3  SQL > select * from datos;
++--------+--------+
+| valor1 | valor2 |
++--------+--------+
+|      5 |      3 |
+|      8 |      4 |
+|     -5 |     -3 |
++--------+--------+
+3 rows in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select valor1, valor2, sumar(valor1, valor2)
+                                     -> from datos;
++--------+--------+-----------------------+
+| valor1 | valor2 | sumar(valor1, valor2) |
++--------+--------+-----------------------+
+|      5 |      3 |                     8 |
+|      8 |      4 |                    12 |
+|     -5 |     -3 |                    -8 |
++--------+--------+-----------------------+
+3 rows in set (0.0009 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select valor1, valor2, sumar2(valor1, valor2) from datos;
++--------+--------+------------------------+
+| valor1 | valor2 | sumar2(valor1, valor2) |
++--------+--------+------------------------+
+|      5 |      3 |                      8 |
+|      8 |      4 |                     12 |
+|     -5 |     -3 |                     -8 |
++--------+--------+------------------------+
+3 rows in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select comparar(3,5);
++---------------------------+
+| comparar(3,5)             |
++---------------------------+
+| Valor 2 MAYOR que Valor 1 |
++---------------------------+
+1 row in set (0.0023 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select comparar(5,3);
++---------------------------+
+| comparar(5,3)             |
++---------------------------+
+| Valor 1 MAYOR que Valor 2 |
++---------------------------+
+1 row in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select comparar(5,5);
++---------------------------+
+| comparar(5,5)             |
++---------------------------+
+| Ambos valores son IGUALES |
++---------------------------+
+1 row in set (0.0008 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL >
